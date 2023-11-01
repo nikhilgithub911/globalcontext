@@ -1,0 +1,31 @@
+*{
+  /* background-color: gray; */
+}
+.container {
+    width: 85vw;
+    height: 85vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .left {
+    background-color:#F0F8FF;
+    display: flex;
+    flex-direction: column;
+    gap: 9%;
+    padding: 10%;
+  }
+  
+  .right {
+    background-color:#cdeaf8;
+    display: flex;
+    flex-direction: column;
+    gap: 9%;
+    padding: 10%;
+  }
+  .slots{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }

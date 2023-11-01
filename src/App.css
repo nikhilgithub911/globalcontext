@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.baton{
+  display: flex;
+  justify-content: center;
+  /* / border: 1px solid black; / */
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.confettie-wrap {
+  background-color: darkslateblue;
+  padding: 200px;
+}
+
+.confettie-wrap h3 {
+  margin: 0;
+  color: white;
+  letter-spacing: 2px;
+}

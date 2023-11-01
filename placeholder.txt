@@ -1,0 +1,83 @@
+import React, { useState, useEffect } from "react";
+// ... other imports ...
+
+export default function CompanyReg() {
+  // ... existing code ...
+
+  // State to store fetched user data
+  const [fetchedUserData, setFetchedUserData] = useState(null);
+
+  // Event handler for phone number input change
+  const handlePhoneNumberChange = async (event) => {
+    const phoneNumber = event.target.value;
+    if (phoneNumber.length === 10) {
+      try {
+        const response = await axios.get(
+          `http://192.168.12.54:8080/vis/getByPhone?phoneNumber=${phoneNumber}`
+        );
+
+        if (response.status === 200 && response.data.data) {
+          // Set the fetched user data in the form
+          setFetchedUserData(response.data.data);
+
+          // Update form fields with fetched data
+          setFormData({
+            ...formData,
+            name: response.data.data.name || "",
+            email: response.data.data.email || "",
+            gender: response.data.data.gender || "",
+            age: response.data.data.age || "",
+            state: {
+              id: response.data.data.state ? response.data.data.state.id : "",
+              name: response.data.data.state ? response.data.data.state.name : "",
+            },
+            city: {
+              id: response.data.data.city ? response.data.data.city.id : "",
+              name: response.data.data.city ? response.data.data.city.name : "",
+            },
+            address: response.data.data.address || "",
+            aadhaarNumber: response.data.data.aadhaarNumber || "",
+            companyName: response.data.data.companyName || "",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user data", error);
+      }
+    }
+  };
+
+  return (
+    <>
+      <div className="img">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            minWidth="550px"
+            margin="auto"
+            marginTop={5}
+            padding={3}
+            borderRadius={5}
+            gap={3}
+            elevation={2}
+            boxShadow={"5px 5px 10px #ccc"}
+          >
+            {/* ... other form fields ... */}
+            
+            <TextField
+              placeholder="Visitor Phone Number"
+              type="number"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              autoComplete="off"
+              onInput={handlePhoneNumberChange} // Add event listener for phone number change
+            />
+
+            {/* ... other form fields ... */}
+          </Box>
+        </form>
+      </div>
+    </>
+  );
+}
